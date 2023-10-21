@@ -3,9 +3,15 @@ import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from datetime import datetime
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 
-client = MongoClient('mongodb+srv://devanda:sparta@cluster0.03gtvkh.mongodb.net/?retryWrites=true&w=majority')
-db = client.dbsparta
+MONGODB_URI = os.environ.get("MONGODB_URI")
+DB_NAME =  os.environ.get("DB_NAME")
+
+client = MongoClient(MONGODB_URI)
+db = client[DB_NAME]
 
 app = Flask(__name__)
 
